@@ -1,18 +1,19 @@
 #include "monty.h"
 /**
- *pint - print the stack top element
- *@stack: elements
- *@line_number: number of instruction
- */
-void pint(stack_t **stack, unsigned int line_number)
+ * f_pint - prints the top
+ * @head: stack head
+ * @counter: line_number
+ * Return: no return
+*/
+void f_pint(stack_t **head, unsigned int counter)
 {
-	if (*stack == '\0')
+	if (*head == NULL)
 	{
-		fprintf(stderr, "L%i: can't pint, stack empty\n", line_number);
-		release(NULL, NULL, 'r');
-		free_dlistint(*stack);
-		free(global.line);
+		fprintf(stderr, "L%u: can't pint, stack empty\n", counter);
+		fclose(bus.file);
+		free(bus.content);
+		free_stack(*head);
 		exit(EXIT_FAILURE);
 	}
-	printf("%i\n", stack[0]->n);
+	printf("%d\n", (*head)->n);
 }

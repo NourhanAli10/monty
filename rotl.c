@@ -1,21 +1,26 @@
 #include "monty.h"
 /**
- *rotl - get the top element to bottom
- *@stack: stack elements
- *@line_number: number of instructions
+  *f_rotl- rotates the stack to the top
+  *@head: stack head
+  *@counter: line_number
+  *Return: no return
  */
-void rotl(stack_t **stack, unsigned int __attribute__((unused))line_number)
+void f_rotl(stack_t **head,  __attribute__((unused)) unsigned int counter)
 {
-	stack_t *top, *bottom;
+	stack_t *tmp = *head, *aux;
 
-	if (stack == '\0' || *stack == '\0')
+	if (*head == NULL || (*head)->next == NULL)
+	{
 		return;
-	top = *stack, bottom = *stack;
-	while (bottom->next != '\0')
-		bottom = bottom->next;
-	bottom->next = top;
-	top->prev = bottom;
-	top->next->prev = '\0';
-	*stack = top->next;
-	top->next = '\0';
+	}
+	aux = (*head)->next;
+	aux->prev = NULL;
+	while (tmp->next != NULL)
+	{
+		tmp = tmp->next;
+	}
+	tmp->next = *head;
+	(*head)->next = NULL;
+	(*head)->prev = tmp;
+	(*head) = aux;
 }
